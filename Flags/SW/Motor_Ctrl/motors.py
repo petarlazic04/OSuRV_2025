@@ -1,5 +1,3 @@
-
-
 from dataclasses import dataclass
 from typing import List, Tuple
 
@@ -12,7 +10,6 @@ from threading import Thread
 
 #IFACE = 'GPIO'
 IFACE = 'I2C'
-
 
 #FIXME For now, velocity is not in °/s but °/30ms, so need this constant here.
 # When acceleration and velocity are normalized,

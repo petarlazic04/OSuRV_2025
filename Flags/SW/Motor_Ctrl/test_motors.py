@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
 
-
 from motors import *
 import time
+
+def raise_flag(motor_number, hold, angle, velocity):
+        motor_state.angle = angle * 10
+        motor_state.velocity = velocity
+        motors_driver.update(motor_number, motor_state)
+        time.sleep(hold)
 
 motor_state = MotorState(
     angle=0.0,
@@ -16,33 +21,9 @@ motor_state = MotorState(
 )
 motors_driver = MotorsDriver()
 
-motor_number = 0
-
-# Move 0th motor
-motor_state.angle = 300.0
-motor_state.velocity = 25.0
-motors_driver.update(motor_number, motor_state)
-time.sleep(1)
-
-motor_state.angle = 0.0
-motor_state.velocity = 10.0
-motors_driver.update(motor_number, motor_state)
-time.sleep(1)
-
-
-'''
-# Move all 20 motors
-for i in range(20):
-    motor_state.angle = 300.0
-    motor_state.velocity = 25.0
-    motors_driver.update(i, motor_state)
-time.sleep(1)
-
-for i in range(20):
-    motor_state.angle = 0.0
-    motor_state.velocity = 10.0
-    motors_driver.update(i, motor_state)
-time.sleep(1)
-'''
+#raise_flag(1,3)
+raise_flag(0,2,90,25)
+time.sleep(2)
+raise_flag(0,2,0,25)
 
 print('End')
