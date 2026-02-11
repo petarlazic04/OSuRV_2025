@@ -53,7 +53,6 @@ def menu():
     return selected_file
 
 # ===== LOAD MODEL =====
-
 model = tf.keras.models.load_model(MODEL_PATH)
 labels = np.load(LABELS_PATH, allow_pickle=True).item()
 inverse_labels = {v: k for k, v in labels.items()}

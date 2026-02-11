@@ -2,13 +2,15 @@ import socket
 from motors import *
 import time
 
-# ====== Configuration Constants =====
+# ====== CONFIGURATION CONSTANTS =====
 MOTOR_START_ANGLE = 0
 MOTOR_END_ANGLE = 90
 MOTOR_SPEED = 25
 MOTOR_MOVE_TIME = 2
 PAUSE = 10
 
+
+# ====== MOTOR CONTROL FUNCTION =====
 def raise_flag(motor_number, hold, angle, velocity):
         motor_state.angle = angle * 10
         motor_state.velocity = velocity
@@ -32,6 +34,7 @@ UDP_IP = "10.1.149.209"
 UDP_PORT = 5005
 BUFFER_SIZE = 1024
 
+# ====== UDP SERVER SETUP =====
 # Create a datagram socket (UDP)
 try:
     sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)

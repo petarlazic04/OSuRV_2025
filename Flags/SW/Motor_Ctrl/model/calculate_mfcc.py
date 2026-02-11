@@ -2,7 +2,7 @@ import os
 import numpy as np
 import librosa
 from tqdm import tqdm
-from mfcc_utils import MFCCProcessor  # tvoj MFCCProcessor
+from mfcc_utils import MFCCProcessor
 
 # ================= CONFIG =================
 DATASET_FOLDER = "augmented_dataset"
@@ -13,7 +13,7 @@ mfcc_processor = MFCCProcessor(sample_rate=SR, n_mfcc=13)
 
 X_list = []
 y_list = []
-labels = {}  # mappping folder -> integer
+labels = {}  # mapping folder -> integer
 
 label_counter = 0
 
@@ -37,10 +37,10 @@ for file_path in tqdm(all_files, desc="Processing files"):
     
     y_label = labels[label_name]
 
-    # ucitaj audio
+    # load audio
     y_audio, _ = librosa.load(file_path, sr=SR)
 
-    # seci na frame-ove od 512 uzoraka
+    # cut into frames of 512 samples
     num_frames = len(y_audio) // FRAME_SIZE
     for i in tqdm(range(num_frames), desc=f"Frames {os.path.basename(file_path)}", leave=False):
         frame = y_audio[i*FRAME_SIZE:(i+1)*FRAME_SIZE]
@@ -49,7 +49,7 @@ for file_path in tqdm(all_files, desc="Processing files"):
         X_list.append(mfcc_feat)
         y_list.append(y_label)
 
-# konvertuj u numpy array
+# convert to numpy array
 X = np.stack(X_list)  # shape: (num_frames_total, 3*n_mfcc)
 y = np.array(y_list)  # shape: (num_frames_total,)
 

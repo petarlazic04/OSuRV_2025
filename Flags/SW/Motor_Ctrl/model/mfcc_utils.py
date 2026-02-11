@@ -6,7 +6,7 @@ try:
 except Exception:  # reson is an optional native extension
     reson = None
 
-
+# ================= MFCC PROCESSOR =================
 class MFCCProcessor:
     """
     MFCC Processor.
@@ -64,6 +64,7 @@ class MFCCProcessor:
         )
         return np.asarray(mfcc[:, 0], dtype=np.float32)
 
+# ================= AUDIO AUGMENTOR =================
 class AudioAugmentor:
     def __init__(self, sr=22050):
         self.sr = sr
